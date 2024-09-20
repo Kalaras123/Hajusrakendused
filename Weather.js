@@ -6,7 +6,7 @@ async function fetchWeatherData() {
 
         const timeseries = data.properties.timeseries;
 
-        timeseries.forEach(entry => {
+        timeseries.slice(0,6).forEach(entry => {
             const time = entry.time;
             const temperature = entry.data.instant.details.air_temperature;
 
