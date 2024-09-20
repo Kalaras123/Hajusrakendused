@@ -9,6 +9,30 @@ HTTP
     ühepoolne, alati küsib arvuti serverilt
     Igas programmeerimiskeeles saab http-d teha
 TCP/IP
+    Saadab kinnituse tagasi
 UDP
+    Ei saada kinnitust tagasi
 Websocket
     kahepoolne
+
+https://github.com/timotr
+
+API
+    Application Programming Interface
+    Programmeerimise võimalused, mis sulle antakse
+    Kogumik käsklusi, mis sul on ette antud, pm funktsioonide kogumik
+
+Stack overflow väitel on praegu kõige populaarsem javascript
+
+Library (eesti keeles teek)
+    Juhendid, sõnavara, mis on ette antud
+Framework (e.k. raamistik)
+    Kogumik erinevaid tööriistu
+
+
+curl -s 'https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=59.437&lon=24.7536'|json_pp
+
+curl -A "MyTestApp/0.1" -I -s 'https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=59.437&lon=24.7536'
+
+curl -A "MyTestApp/0.1" -i -H 'If-Modified-Since: Fri, 20 Sep 2024 00:00:01 GMT' \
+  -s 'https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=59.437&lon=24.7536'
