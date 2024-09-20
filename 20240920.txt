@@ -1,0 +1,14 @@
+Hajusrakendused võivad olla megakeerulised asjad, nt krüptograafilised programmid, torrentid, peer to peer asjad jne.
+
+Pm rakendused, mis töötavad eri osadena eri arvutites.
+Saab teha ka nt nii, et osa programmi on kirjutatud ühes keeles, osa mingis teises keeles.
+
+Erinevad protokollid:
+HTTP
+    seda hakkame kõige rohkem kasutama
+    ühepoolne, alati küsib arvuti serverilt
+    Igas programmeerimiskeeles saab http-d teha
+TCP/IP
+UDP
+Websocket
+    kahepoolne
