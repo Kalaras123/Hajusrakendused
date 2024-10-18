@@ -1,0 +1,11 @@
+API ehk programmeerimisliides
+
+
+HTTP
+Header (päis)
+    key-value programmeerimisliides
+{ key: value}
+Map, HashMap, Dictionary, object
+assocative array
+
+Body (keha, sisu)
