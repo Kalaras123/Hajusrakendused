@@ -9,3 +9,20 @@ Map, HashMap, Dictionary, object
 assocative array
 
 Body (keha, sisu)
+Content-Type: application/json
+
+MIME type
+Status Codes
+Methods:
+    GET, POST, PUT, DELETE, HEAD
+
+HTTP client programs
+HTTP server
+
+API ehitamiseks on head programmid:
+Insomnia, Postman (see on hea variant ärikliendisuunaga tegelemiseks), Fiddler
+
+https://demo2.z-bit.ee/
+
+See on väga hea variant, mida proovida teha:
+https://github.com/timotr/harjutused/blob/main/progre/guessTheNumber.md
