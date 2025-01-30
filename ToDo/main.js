@@ -14,6 +14,7 @@
 
 const ACCESS_TOKEN = "pcQp4GgUZrSudbS5fb0GyShn3U8Yayfu";
 const API_BASE_URL = "https://demo2.z-bit.ee";
+const USER_NAME = "KalaRasmus"
 
 async function apiRequest(endpoint, method = 'GET', data = null) {
     const headers = {
@@ -66,6 +67,15 @@ async function createTaskOnServer(title = 'New Task', desc = '', marked_as_done 
     return response.json();
 }
 
+async function fetchCurrentUser() {
+    try {
+        document.getElementById("username").textContent = USER_NAME;
+    } catch (error) {
+        console.error("Error fetching user:", error);
+        document.getElementById("username").textContent = "Guest";
+    }
+};
+
 // function updateTaskOnServer (id, updates) {
 //     return apiRequest(`/tasks/${id}`, 'PUT', updates);
 // }
@@ -99,54 +109,17 @@ async function deleteTaskOnServer(taskId) {
 let taskList;
 let addTask;
 
-// kui leht on brauseris laetud siis lisame esimesed taskid lehele
-// window.addEventListener('load', () => {
-//     taskList = document.querySelector('#task-list');
-//     addTask = document.querySelector('#add-task');
 
-//     tasks.forEach(renderTask);
+// async function changeCurrentUser() {
 
-//     // kui nuppu vajutatakse siis lisatakse uus task
-//     addTask.addEventListener('click', () => {
-//         const task = createTask(); // Teeme kõigepealt lokaalsesse "andmebaasi" uue taski
-//         const taskRow = createTaskRow(task); // Teeme uue taski HTML elementi mille saaks lehe peale listi lisada
-//         taskList.appendChild(taskRow); // Lisame taski lehele
-//     });
-// });
+// };
 
-// window.addEventListener('load', async () => {
-//     taskList = document.querySelector('#task-list');
-//     addTask = document.querySelector('#add-task');
-
-//     const serverTasks = await fetchTasks();
-//     serverTasks.forEach(task => {
-//         renderTask({
-//             id: task.id,
-//             name: task.title,
-//             completed: task.marked_as_done,
-//         });
-//     });
-
-//     // kui nuppu vajutatakse siis lisatakse uus task
-//     addTask.addEventListener('click', async () => {
-//         const task = {
-//             title: `Task ${Date.now()}`,
-//             desc: "",
-//             marked_as_done: false,
-//         };
-
-//         const newTask = await createTaskOnServer(task);
-//         renderTask({
-//             id: newTask.id,
-//             name: newTask.title,
-//             completed: newTask.marked_as_done,
-//         });
-//     });
-// });
 
 window.addEventListener('load', async () => {
     taskList = document.querySelector('#task-list');
     addTask = document.querySelector('#add-task');
+
+    await fetchCurrentUser();
 
     const tasks = await fetchTasks();
     console.log('Fetched tasks:', tasks);
@@ -165,48 +138,6 @@ function renderTask(task) {
     const taskRow = createTaskRow(task);
     taskList.appendChild(taskRow);
 }
-
-// function createTaskRow(task) {
-//     let taskRow = document.querySelector('[data-template="task-row"]').cloneNode(true);
-//     taskRow.removeAttribute('data-template');
-
-//     // Täidame vormi väljad andmetega
-//     const name = taskRow.querySelector("[name='name']");
-//     name.value = task.name;
-
-//     name.addEventListener('input', async () => {
-//         await updateTaskOnServer(task.id, { title: name.value});
-//     });
-
-//     const desc = taskRow.querySelector("[name='desc']");
-//     if (desc) {
-//         desc.value = task.desc || "";
-//         desc.addEventListener('input', async () => {
-//             await updateTaskOnServer(task.id, { desc: desc.value });
-//         });
-//     }
-
-//     const checkbox = taskRow.querySelector("[name='completed']");
-//     checkbox.checked = task.completed;
-
-//     checkbox.addEventListener('change', async () => {
-//         await updateTaskOnServer(task.id, { marked_as_done: checkbox.checked});
-//     });
-
-//     const deleteButton = taskRow.querySelector('.delete-task');
-//     deleteButton.addEventListener('click', async () => {
-//         await deleteTaskOnServer(task.id);
-//         taskList.removeChild(taskRow);
-//         const updatedTasks = await fetchTasks();
-//         taskList.innerHTML = '';
-//         updatedTasks.forEach(renderTask);
-//     });
-
-//     // Valmistame checkboxi ette vajutamiseks
-//     hydrateAntCheckboxes(taskRow);
-
-//     return taskRow;
-// }
 
 function createTaskRow(task) {
     const taskRow = document.querySelector('[data-template="task-row"]').cloneNode(true);
