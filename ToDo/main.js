@@ -16,6 +16,8 @@ const ACCESS_TOKEN = "pcQp4GgUZrSudbS5fb0GyShn3U8Yayfu";
 const API_BASE_URL = "https://demo2.z-bit.ee";
 const USER_NAME = "KalaRasmus"
 
+const updateTaskOnServerDebounced = debounce(updateTaskOnServer, 1000)
+
 async function apiRequest(endpoint, method = 'GET', data = null) {
     const headers = {
         'Content-Type': 'application/json',
@@ -91,6 +93,7 @@ async function updateTaskOnServer(taskId, data) {
     });
 }
 
+
 // function deleteTaskOnServer(id) {
 //     return apiRequest(`/tasks/${id}`, 'DELETE');
 // }
@@ -109,6 +112,14 @@ async function deleteTaskOnServer(taskId) {
 let taskList;
 let addTask;
 
+function debounce(fn, time = 1000){
+    let timer;
+    return function () {
+        clearTimeout (timer)
+        timer = setTimeout (fn.bind(null, ...arguments), time)
+        console.log ("stringtest: ", time)
+    }
+}
 
 // async function changeCurrentUser() {
 
@@ -147,7 +158,7 @@ function createTaskRow(task) {
     name.value = task.title;
 
     name.addEventListener('input', async () => {
-        await updateTaskOnServer(task.id, { title: name.value });
+        await updateTaskOnServerDebounced(task.id, { title: name.value });
     });
 
     const checkbox = taskRow.querySelector("[name='completed']");
